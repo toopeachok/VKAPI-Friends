@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:after, *:before {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #eeeeee;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.friends-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.friend-card {
+  background-color: #ffffff;
+  max-width: 50%;
+  width: 100%;
+  box-shadow: 1px 1px 5px #000000;
+  padding: 1em;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  overflow: hidden;
+}
+
+.vk-auth-btn {
+  padding: .5em 1em;
+  font-size: 1rem;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  text-align: center;
+  background-color: #5181b8;
+  color: #ffffff;
+  border: 0;
+  border-radius: 4px;
+}
+
+.login-message {
+  background-color: #ffd6cc ;
+  border: 1px solid #f2ab99;
+  border-radius: 2px;
+  color: #000000;
+  font-weight: 700;
+  line-height: 150%;
+  padding: .5em 1em;
+  margin-bottom: .5rem;
+}
+
+@media (max-width: 1080px) {
+  .friend-card {
+    font-size: 1rem;
+  }
+}
