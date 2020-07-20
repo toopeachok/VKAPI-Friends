@@ -21,6 +21,10 @@ const parseUserData = (data) => {
 };
 
 const renderFriendsCards = (data) => {
+  if (document.querySelector('.login-message')) {
+    document.querySelector('.login-message').remove();
+  }
+
   const friends = parseUserData(data);
 
   friends.forEach((friend) => {
@@ -51,6 +55,7 @@ const showAuthError = (element) => {
   element.disabled = true;
   setTimeout(() => {
     document.querySelector('.login-message').remove();
+    element.style.opacity = '1';
     element.disabled = false;
   }, 2000);
 };

@@ -189,6 +189,10 @@ var parseUserData = function parseUserData(data) {
 };
 
 var renderFriendsCards = function renderFriendsCards(data) {
+  if (document.querySelector('.login-message')) {
+    document.querySelector('.login-message').remove();
+  }
+
   var friends = parseUserData(data);
   friends.forEach(function (friend) {
     new _components_FriendCard__WEBPACK_IMPORTED_MODULE_0__["default"](friend, '.friends-box').render();
@@ -209,6 +213,7 @@ var showAuthError = function showAuthError(element) {
   element.disabled = true;
   setTimeout(function () {
     document.querySelector('.login-message').remove();
+    element.style.opacity = '1';
     element.disabled = false;
   }, 2000);
 };
