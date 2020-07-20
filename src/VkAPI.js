@@ -55,12 +55,15 @@ const showAuthError = (element) => {
   }, 2000);
 };
 
-const authHandler = () => {
+const authHandler = (e) => {
+  e.preventDefault();
   VK.Auth.login((response) => {
     if (response.status === 'connected') {
       console.log('User had logged in');
+      renderFriendsCards(response);
     } else {
       console.log('User had not logged in');
+      showAuthError(e.target);
     }
   }, VK.access.FRIENDS);
 };

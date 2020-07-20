@@ -213,12 +213,15 @@ var showAuthError = function showAuthError(element) {
   }, 2000);
 };
 
-var authHandler = function authHandler() {
+var authHandler = function authHandler(e) {
+  e.preventDefault();
   VK.Auth.login(function (response) {
     if (response.status === 'connected') {
       console.log('User had logged in');
+      renderFriendsCards(response);
     } else {
       console.log('User had not logged in');
+      showAuthError(e.target);
     }
   }, VK.access.FRIENDS);
 };
