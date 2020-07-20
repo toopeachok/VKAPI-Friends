@@ -60,7 +60,18 @@ const authHandler = (e) => {
   VK.Auth.login((response) => {
     if (response.status === 'connected') {
       console.log('User had logged in');
-      renderFriendsCards(response);
+      VK.Api.call(
+        'friends.get',
+        {
+          order: 'random',
+          count: 5,
+          offset: 5,
+          fields: 'city',
+          name_case: 'nom',
+          v: '5.120',
+        },
+        renderFriendsCards,
+      );
     } else {
       console.log('User had not logged in');
       showAuthError(e.target);
