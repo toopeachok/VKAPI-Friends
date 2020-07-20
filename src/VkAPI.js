@@ -21,8 +21,8 @@ const parseUserData = (data) => {
 };
 
 const renderFriendsCards = (data) => {
-  if (document.querySelector('.login-message')) {
-    document.querySelector('.login-message').remove();
+  if (document.querySelector('.vk-auth-btn')) {
+    document.querySelector('.vk-auth-btn').remove();
   }
 
   const friends = parseUserData(data);

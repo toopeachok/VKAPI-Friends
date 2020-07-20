@@ -189,8 +189,8 @@ var parseUserData = function parseUserData(data) {
 };
 
 var renderFriendsCards = function renderFriendsCards(data) {
-  if (document.querySelector('.login-message')) {
-    document.querySelector('.login-message').remove();
+  if (document.querySelector('.vk-auth-btn')) {
+    document.querySelector('.vk-auth-btn').remove();
   }
 
   var friends = parseUserData(data);
