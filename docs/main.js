@@ -198,7 +198,6 @@ var renderFriendsCards = function renderFriendsCards(data) {
 var getLoginStatus = function getLoginStatus() {
   var loginStatus = 'unknown';
   VK.Auth.getLoginStatus(function (response) {
-    console.log(response.status);
     if (response.status === 'connected') loginStatus = 'connected';
   });
   return loginStatus;
@@ -206,6 +205,7 @@ var getLoginStatus = function getLoginStatus() {
 
 var showAuthError = function showAuthError(element) {
   element.insertAdjacentHTML('beforebegin', "\n        <div class=\"login-message\">\n          \u041E\u0448\u0438\u0431\u043A\u0430 \u0430\u0443\u0442\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438\n        </div>\n      ");
+  element.style.opacity = '.5';
   element.disabled = true;
   setTimeout(function () {
     document.querySelector('.login-message').remove();
@@ -217,7 +217,6 @@ var authHandler = function authHandler(e) {
   e.preventDefault();
   VK.Auth.login(function (response) {
     if (response.status === 'connected') {
-      console.log('User had logged in');
       VK.Api.call('friends.get', {
         order: 'random',
         count: 5,
@@ -227,7 +226,6 @@ var authHandler = function authHandler(e) {
         v: '5.120'
       }, renderFriendsCards);
     } else {
-      console.log('User had not logged in');
       showAuthError(e.target);
     }
   }, VK.access.FRIENDS);

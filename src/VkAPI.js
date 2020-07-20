@@ -32,7 +32,6 @@ const getLoginStatus = () => {
   let loginStatus = 'unknown';
 
   VK.Auth.getLoginStatus((response) => {
-    console.log(response.status);
     if (response.status === 'connected') loginStatus = 'connected';
   });
 
@@ -48,6 +47,7 @@ const showAuthError = (element) => {
         </div>
       `,
   );
+  element.style.opacity = '.5';
   element.disabled = true;
   setTimeout(() => {
     document.querySelector('.login-message').remove();
@@ -59,7 +59,6 @@ const authHandler = (e) => {
   e.preventDefault();
   VK.Auth.login((response) => {
     if (response.status === 'connected') {
-      console.log('User had logged in');
       VK.Api.call(
         'friends.get',
         {
@@ -73,7 +72,6 @@ const authHandler = (e) => {
         renderFriendsCards,
       );
     } else {
-      console.log('User had not logged in');
       showAuthError(e.target);
     }
   }, VK.access.FRIENDS);
