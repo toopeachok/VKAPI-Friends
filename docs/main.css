@@ -41,7 +41,7 @@ body {
   border: 0;
   border-radius: 4px; }
 
-.login-message {
+.login-message, .nofriends-message {
   background-color: #ffd6cc;
   border: 1px solid #f2ab99;
   border-radius: 2px;

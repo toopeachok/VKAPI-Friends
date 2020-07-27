@@ -171,6 +171,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var parseUserData = function parseUserData(data) {
+  if (data.response.count === 0) return [];
+
   if (!data.error) {
     var users = data.response.items;
     var friends = [];
@@ -194,9 +196,14 @@ var renderFriendsCards = function renderFriendsCards(data) {
   }
 
   var friends = parseUserData(data);
-  friends.forEach(function (friend) {
-    new _components_FriendCard__WEBPACK_IMPORTED_MODULE_0__["default"](friend, '.friends-box').render();
-  });
+
+  if (friends) {
+    friends.forEach(function (friend) {
+      new _components_FriendCard__WEBPACK_IMPORTED_MODULE_0__["default"](friend, '.friends-box').render();
+    });
+  } else {
+    document.body.innerHTML = "\n        <div class=\"nofriends-message\">\n          \u0423 \u0432\u0430\u0441 \u043D\u0435\u0442 \u0434\u0440\u0443\u0437\u0435\u0439:((\n        </div>\n      ";
+  }
 };
 
 var getLoginStatus = function getLoginStatus() {

@@ -2,6 +2,8 @@ import FriendCard from '@/components/FriendCard';
 import Button from '@/components/Button';
 
 const parseUserData = (data) => {
+  if (data.response.count === 0) return [];
+
   if (!data.error) {
     const users = data.response.items;
     let friends = [];
@@ -27,9 +29,17 @@ const renderFriendsCards = (data) => {
 
   const friends = parseUserData(data);
 
-  friends.forEach((friend) => {
-    new FriendCard(friend, '.friends-box').render();
-  });
+  if (friends) {
+    friends.forEach((friend) => {
+      new FriendCard(friend, '.friends-box').render();
+    });
+  } else {
+    document.body.innerHTML = `
+        <div class="nofriends-message">
+          У вас нет друзей:((
+        </div>
+      `;
+  }
 };
 
 const getLoginStatus = () => {
